@@ -3,12 +3,12 @@ Batizado em homenagem a cantora indie, clairo é um chat app desenvolvido com o 
 
 ### Tech Stack
 - [Django](https://github.com/django) - Web Framework
-- [Channels](https://github.com/django/channels) - Extensão do Django para código assíncrono
+- [Channels](https://github.com/django/channels) - Extensão do Django para código assíncrono e WebSockets
 - [Daphne](https://github.com/django/daphne) - Servidor HTTP/Websocket
 - [PostgreSQL](https://www.postgresql.org) - Banco de Dados SQL
 - [Redis](https://redis.io/) - Message Broker
 - [Tailwind](https://tailwindcss.com/) - CSS Framework
-- [Docker](https://www.docker.com/) - Containers
+- [Docker Compose](https://docs.docker.com/compose/) - Multi-container
 
 ### Configuração
 1. Clone o repositório:
@@ -16,7 +16,8 @@ Batizado em homenagem a cantora indie, clairo é um chat app desenvolvido com o 
 git clone https://github.com/ma-alves/clairo.git
 ```
 2. Ajuste as variáveis de ambiente em `.env.example`
-2. Utilize o Docker Compose para iniciar os serviços:
+3. Utilize o Docker Compose para iniciar os serviços:
 ```bash
 docker compose up --build
 ```
+4. A aplicação estará disponível em 0.0.0.0:8000

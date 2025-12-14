@@ -7,7 +7,7 @@
         {% for user in chat.users.all %}
             {% if user != request.user %}
             <a href="{% url 'chat' chat.chat_uuid %}">
-                <div class="flex items-center font-medium gap-2 p-2 hover:bg-emerald-300 rounded-lg z-0">
+                <div class="flex items-center font-medium gap-2 p-2 hover:bg-emerald-300 rounded-lg z-0 overflow-y-auto grow">
                     <img class="w-10 h-10 rounded-full object-cover" src="{% static 'img/profile-pic.png' %}">
                     {{ user.username }}
                     {% if user.status.online_status %}
