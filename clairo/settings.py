@@ -70,7 +70,7 @@ TEMPLATES = [
 
 # WSGI_APPLICATION = 'clairo.wsgi.application'
 
-CSRF_TRUSTED_ORIGINS = ["https://clairo-web.onrender.com/"]
+CSRF_TRUSTED_ORIGINS = ["https://clairo-web.onrender.com/", "https://www.clairo-web.onrender.com/"]
 
 ASGI_APPLICATION = 'clairo.asgi.application'
 
