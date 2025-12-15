@@ -18,13 +18,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = False
 
 ALLOWED_HOSTS = []
+
+CSRF_TRUSTED_ORIGINS = ["https://clairo-web.onrender.com", "https://www.clairo-web.onrender.com"]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
+    
+CSRF_COOKIE_DOMAIN = '.onrender.com'
+SESSION_COOKIE_DOMAIN = '.onrender.com'
 
 # Application definition
 INSTALLED_APPS = [
@@ -69,8 +75,6 @@ TEMPLATES = [
 ]
 
 # WSGI_APPLICATION = 'clairo.wsgi.application'
-
-CSRF_TRUSTED_ORIGINS = ["https://clairo-web.onrender.com/", "https://www.clairo-web.onrender.com/"]
 
 ASGI_APPLICATION = 'clairo.asgi.application'
 
