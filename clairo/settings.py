@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+import dj_database_url
+
 from dotenv import load_dotenv
 
 
@@ -16,9 +18,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 INSTALLED_APPS = [
@@ -36,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,15 +95,22 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE': 'django.db.backends.postgresql',
+# 		'NAME': os.getenv('DATABASE_NAME'),
+# 		'USER': os.getenv('DATABASE_USERNAME'),
+# 		'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+# 		'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+# 		'PORT': os.getenv('DATABASE_PORT'),
+# 	}
+# }
+
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql',
-		'NAME': os.getenv('DATABASE_NAME'),
-		'USER': os.getenv('DATABASE_USERNAME'),
-		'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-		'HOST': os.getenv('DATABASE_HOST', 'localhost'),
-		'PORT': os.getenv('DATABASE_PORT'),
-	}
+    'default': dj_database_url.config(
+        default='postgresql://postgres:postgres@localhost:5432/clairo',
+        conn_max_age=600
+    )
 }
 
 # Password validation
@@ -133,8 +147,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+
+if not DEBUG:
+	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+	STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
