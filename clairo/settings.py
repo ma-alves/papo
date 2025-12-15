@@ -22,14 +22,16 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ["https://clairo-web.onrender.com", "https://www.clairo-web.onrender.com"]
-
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
-    
+
+CSRF_TRUSTED_ORIGINS = ["https://www.clairo-web.onrender.com"]
+
+CSRF_COOKIE_SECURE = True
+
 CSRF_COOKIE_DOMAIN = '.onrender.com'
+
 SESSION_COOKIE_DOMAIN = '.onrender.com'
 
 # Application definition
@@ -167,3 +169,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+SESSION_COOKIE_SECURE = True
