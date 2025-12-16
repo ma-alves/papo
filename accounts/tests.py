@@ -47,7 +47,7 @@ class UserAuthTestCase(TestCase):
 			},
 		)
 
-		self.assertRedirects(response, reverse('home'))
+		self.assertRedirects(response, f"{reverse('home')}?message=1")
 		self.user1.refresh_from_db()
 		self.assertTrue(self.user1.check_password('NovaSenha1234!'))
 
@@ -61,7 +61,7 @@ class UserAuthTestCase(TestCase):
 			},
 		)
 
-		self.assertRedirects(response, reverse('home'))
+		self.assertRedirects(response, f"{reverse('home')}?message=1")
 		self.user1.refresh_from_db()
 		self.assertTrue(self.user1.check_password('RedefinirSenha1234!'))
 
