@@ -1,6 +1,6 @@
 const onlineUser = JSON.parse(document.getElementById('current-id').textContent);
 const onlineSocket = new WebSocket(
-    'ws://' + window.location.host + '/ws/online-status/'
+    'wss://' + window.location.host + '/ws/online-status/'
 )
 
 onlineSocket.onopen = function (e) {
