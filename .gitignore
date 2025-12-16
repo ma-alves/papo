@@ -162,6 +162,4 @@ cython_debug/
 # else
 .ruff_cache
 entrypoint.sh
-notas.txt
-notes.txt
 profile-archive.html
