@@ -3,6 +3,7 @@ from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from accounts.forms import (
 	ResetPasswordForm,
@@ -63,8 +64,7 @@ def update_password_view(request):
 		if form.is_valid():
 			user = form.save()
 			update_session_auth_hash(request, user)
-			messages.success(request, 'Senha alterada com sucesso.')
-			return redirect('home')
+			return redirect(f"{reverse('home')}?message=1")
 		else:
 			for field, errors in form.errors.items():
 				for error in errors:
@@ -82,8 +82,7 @@ def reset_password_view(request):
 		if form.is_valid():
 			user = form.save()
 			update_session_auth_hash(request, user)
-			messages.success(request, 'Senha alterada com sucesso.')
-			return redirect('home')
+			return redirect(f"{reverse('home')}?message=1")
 		else:
 			for field, errors in form.errors.items():
 				for error in errors:

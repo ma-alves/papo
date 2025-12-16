@@ -37,4 +37,15 @@
 {% block javascript %}
 <script id="current-id" type="application/json">{{ request.user.id|escapejs }}</script>
 <script src="{% static 'js/online.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('message') === '1') {
+            alert('Senha alterada com sucesso!');
+            
+            // Remove o parâmetro da URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    });
+</script>
 {% endblock %}
