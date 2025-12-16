@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -24,7 +24,7 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-CSRF_TRUSTED_ORIGINS = ["https://www.clairo-web.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
 
 CSRF_COOKIE_SECURE = True
 
@@ -80,25 +80,21 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'clairo.asgi.application'
 
-CHANNEL_LAYERS = {
-	'default': {
-		'BACKEND': 'channels_redis.core.RedisChannelLayer',
-		'CONFIG': {
-			'hosts': [(os.getenv('REDIS_HOST'), 6379)],
-			# 'hosts': [('redis', 6379)],
-		},
-	}
-}
-
-# Configuração local
 # CHANNEL_LAYERS = {
 # 	'default': {
 # 		'BACKEND': 'channels_redis.core.RedisChannelLayer',
 # 		'CONFIG': {
-#             'hosts': [('127.0.0.1', 6379)],
+# 			'hosts': [(os.getenv('REDIS_HOST'), 6379)],
+# 			# 'hosts': [('127.0.0.1', 6379)],
 # 		},
 # 	}
 # }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
