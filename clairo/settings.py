@@ -2,9 +2,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
-
 from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -18,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -31,6 +29,8 @@ CSRF_TRUSTED_ORIGINS = ["https://www.clairo-web.onrender.com"]
 CSRF_COOKIE_SECURE = True
 
 CSRF_COOKIE_DOMAIN = '.onrender.com'
+
+SESSION_COOKIE_SECURE = True
 
 SESSION_COOKIE_DOMAIN = '.onrender.com'
 
@@ -169,5 +169,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-SESSION_COOKIE_SECURE = True
