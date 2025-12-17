@@ -88,6 +88,7 @@ class OnlineConsumer(AsyncWebsocketConsumer):
 			connection_type, message_user_id = self.check_text_data(data)
 
 			await self.set_user_status(message_user_id, connection_type)
+
 			await self.channel_layer.group_send(
 				self.room_group_name,
 				{

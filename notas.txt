@@ -1,3 +1,12 @@
+# ALTERAR WSS ANTES DE DAR MERGE EM MAIN PELO AMOR DE DEUS
+
+# tarefas
+- apagar branch deploy
+- alterar para servidor redis
+- deletar conversa
+- deletar conta
+- escrever testes gerais
+
 # pra quando for migrar do inmemory para redis no deploy
 CHANNEL_LAYERS = {
     "default": {
@@ -5,11 +14,6 @@ CHANNEL_LAYERS = {
         "host": [os.getenv('REDIS_URL')]
     },
 }
-
-# tarefas
-- alterar para servidor redis
-- alterar redirects nos testes de accounts
-- escrever testes gerais
 
 # observações e dúvidas
 - connect e disconnect ao mudar de página, forum diz que só com SPA

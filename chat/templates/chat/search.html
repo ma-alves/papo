@@ -7,8 +7,8 @@
     {% include 'chat-list.html' %}
     <!-- Pesquisa de usuários -->
     <div id="chat-window" class="flex flex-col col-span-2 bg-white relative h-[45rem]">
-        <div class="flex flex-col items-center text-black h-full space-y-2">
-            {% if user_list %}
+        {% if user_list %}
+            <div class="flex flex-col items-center text-black h-full space-y-2">
                 <div class="flex p-3 bg-white sticky top-0 z-10">
                     <h2 class="text-2xl font-bold text-black">Resultados</h2>
                 </div>
@@ -22,13 +22,16 @@
                         </a>
                     {% endfor %}
                 </div>
-            {% else %}
-            <h2 class="text-2xl font-bold text-black">Nenhum resultado encontrado :&#40;</h2>
-            <form method="get" class="flex flex-col items-center space-y-2">
-                <input type="text" name="username" value="{{ request.GET.query }}" autocomplete="off" class="text-center py-3 px-4 block w-full border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                <input class="flex justify-center py-3 px-4 border-2 border-black shadow-[3px_3px_0_0_#000] rounded-full text-sm font-medium text-black bg-emerald-300 hover:bg-emerald-500 focus:shadow-[0px_0px_0_0_#000] focus:translate-y-1 focus:translate-x-1" type='submit' value="Pesquisar">
-            </form>
-            {% endif %}
+            </div>
+        {% else %}
+            <div class="flex flex-col items-center justify-center text-black h-full space-y-2">
+                <h2 class="text-2xl font-bold text-black">Nenhum resultado encontrado :&#40;</h2>
+                <form method="get" class="flex flex-col items-center space-y-2">
+                    <input type="text" name="username" value="{{ request.GET.query }}" autocomplete="off" class="text-center py-3 px-4 block w-full border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                    <input class="flex justify-center py-3 px-4 border-2 border-black shadow-[3px_3px_0_0_#000] rounded-full text-sm font-medium text-black bg-emerald-300 hover:bg-emerald-500 focus:shadow-[0px_0px_0_0_#000] focus:translate-y-1 focus:translate-x-1" type='submit' value="Pesquisar">
+                </form>
+            </div>
+        {% endif %}
         </div>
     </div>
 </wrapper>

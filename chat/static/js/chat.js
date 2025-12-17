@@ -2,7 +2,7 @@ const roomName = JSON.parse(document.getElementById('chat_uuid').textContent);
 const currentUser = JSON.parse(document.getElementById('current-id').textContent);
 
 const chatSocket = new WebSocket(
-    'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+    'wss://' + window.location.host + '/ws/chat/' + roomName + '/'
 );
 
 chatSocket.onmessage = function (e) {
@@ -35,7 +35,6 @@ chatSocket.onmessage = function (e) {
             }
             chatMessages.appendChild(messageElement);
 
-            // Scroll automático
             const chatContainer = document.querySelector('#chat_container');
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }

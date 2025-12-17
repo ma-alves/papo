@@ -1,10 +1,9 @@
 const onlineUser = JSON.parse(document.getElementById('current-id').textContent);
 const onlineSocket = new WebSocket(
-    'ws://' + window.location.host + '/ws/online-status/'
+    'wss://' + window.location.host + '/ws/online-status/'
 )
 
 onlineSocket.onopen = function (e) {
-    console.log("Conexão de status online estabelecida.")
     onlineSocket.send(JSON.stringify({
         'type': 'open',
         'user_id': onlineUser,
@@ -19,7 +18,11 @@ window.addEventListener('beforeunload', function (e) {
 })
 
 onlineSocket.onclose = function (e) {
-    console.log("Conexão de status online encerrada.")
+    if (e.code === 1001) {
+        setTimeout(() => {
+            reconnect();
+        }, 5000);
+    }
 }
 
 onlineSocket.onerror = function (e) {

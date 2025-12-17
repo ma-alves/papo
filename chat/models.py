@@ -37,4 +37,4 @@ class UserOnlineStatus(models.Model):
 	online_status = models.BooleanField(default=False)
 
 	def __str__(self) -> str:
-		return f'{self.user.username}'
+		return f'{self.online_status}'

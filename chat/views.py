@@ -70,7 +70,8 @@ def search_users(request):
 	users = User.objects.all()
 
 	if query:
-		user_list = users.filter(username__icontains=query)
+		clean_query = query.strip()
+		user_list = users.filter(username__icontains=clean_query)
 		return render(request, 'chat/search.html', context={'user_list': user_list})
 
 	return redirect('home')
