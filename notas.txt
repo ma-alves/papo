@@ -7,14 +7,6 @@
 - deletar conta
 - escrever testes gerais
 
-# pra quando for migrar do inmemory para redis no deploy
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "host": [os.getenv('REDIS_URL')]
-    },
-}
-
 # observações e dúvidas
 - connect e disconnect ao mudar de página, forum diz que só com SPA
 - type em resposta ao cliente, send -> onmessage
