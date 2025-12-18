@@ -26,4 +26,4 @@ docker compose up --build
 4. A aplicação estará disponível em 0.0.0.0:8000
 
 ### Acesso
-A aplicação também está disponível em [papo](https://papo.onrender.com/), fique a vontade para me enviar uma mensagem! Meu usuário: [matheus](https://papo.onrender.com/chat/profile/matheus/)
+A aplicação também está disponível em [papo](https://papo-uexb.onrender.com), fique a vontade para me enviar uma mensagem! Meu usuário: [matheus](https://papo-uexb.onrender.com/chat/profile/matheus/)
