@@ -1,5 +1,5 @@
 """
-ASGI config for clairo project.
+ASGI config for papo project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 """
 
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clairo.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'papo.settings')
 
 import django
 django.setup()

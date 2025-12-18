@@ -55,7 +55,7 @@ MIDDLEWARE = [
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'clairo.urls'
+ROOT_URLCONF = 'papo.urls'
 
 TEMPLATES = [
 	{
@@ -72,9 +72,9 @@ TEMPLATES = [
 	},
 ]
 
-# WSGI_APPLICATION = 'clairo.wsgi.application'
+# WSGI_APPLICATION = 'papo.wsgi.application'
 
-ASGI_APPLICATION = 'clairo.asgi.application'
+ASGI_APPLICATION = 'papo.asgi.application'
 
 if DEBUG:
 	DATABASES = {
@@ -98,21 +98,21 @@ if DEBUG:
 else:
 	DATABASES = {
 		'default': dj_database_url.config(
-			default='postgresql://postgres:postgres@localhost:5432/clairo',
+			default='postgresql://postgres:postgres@localhost:5432/papo',
 			conn_max_age=600
 		)
 	}
-	CHANNEL_LAYERS = {
-		"default": {
-			"BACKEND": "channels.layers.InMemoryChannelLayer"
-		}
-	}
 	# CHANNEL_LAYERS = {
-    # "default": {
-    #     "BACKEND": "channels_redis.core.RedisChannelLayer",
-    #     "host": [os.getenv('REDIS_URL')]
-	# 	},
+	# 	"default": {
+	# 		"BACKEND": "channels.layers.InMemoryChannelLayer"
+	# 	}
 	# }
+	CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "host": [os.getenv('REDIS_URL')]
+		},
+	}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
