@@ -1,14 +1,13 @@
 # ALTERAR WSS ANTES DE DAR MERGE EM MAIN PELO AMOR DE DEUS
 
 # tarefas
-- apagar branch deploy
-- alterar para servidor redis
 - deletar conversa
 - deletar conta
-- talvez trocar chat_uuid por uuid
 - escrever testes gerais
 
 # observações e dúvidas
+- channel layers não funciona no Render pq REDIS_URL é substituído por localhost
+- talvez trocar chat_uuid por uuid
 - connect e disconnect ao mudar de página, forum diz que só com SPA
 - type em resposta ao cliente, send -> onmessage
 

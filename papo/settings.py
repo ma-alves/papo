@@ -102,17 +102,17 @@ else:
 			conn_max_age=600
 		)
 	}
-	# CHANNEL_LAYERS = {
-	# 	"default": {
-	# 		"BACKEND": "channels.layers.InMemoryChannelLayer"
-	# 	}
-	# }
 	CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "host": [os.getenv('REDIS_URL')]
-		},
+		"default": {
+			"BACKEND": "channels.layers.InMemoryChannelLayer"
+		}
 	}
+	# CHANNEL_LAYERS = {
+    # "default": {
+    #     "BACKEND": "channels_redis.core.RedisChannelLayer",
+    #     "host": [os.getenv('REDIS_URL')]
+	# 	},
+	# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
