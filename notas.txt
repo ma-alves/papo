@@ -5,6 +5,7 @@
 - alterar para servidor redis
 - deletar conversa
 - deletar conta
+- talvez trocar chat_uuid por uuid
 - escrever testes gerais
 
 # pra quando for migrar do inmemory para redis no deploy
@@ -20,16 +21,16 @@ CHANNEL_LAYERS = {
 - type em resposta ao cliente, send -> onmessage
 
 # conectando com o container do postgres e criando banco
-docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=postgres -v clairo-volume:/var/lib/postgresql/data postgres:17
+docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=postgres -v papo-volume:/var/lib/postgresql/data postgres:17
 docker exec -it <id> bash
 root@<id>:/# psql -U postgres
-postgres=# create database clairo;
+postgres=# create database papo;
 postgres=# \q
 postgres=# exit
 
 # comandos
 - rodar -- talvez colocar no compose
-uv run daphne -b 0.0.0.0 -p 8000 clairo.asgi:application
+uv run daphne -b 0.0.0.0 -p 8000 papo.asgi:application
 - encerrar processo na porta 8000
 fuser -k -n tcp 8000
 - iniciar channel layer:
@@ -39,9 +40,9 @@ ruff check --select I --fix
 
 # docker
 - build docker image
-docker build -t clairo-image .
+docker build -t papo-image .
 - run docker image
-docker run -it -p 8000:8000 --name clairo clairo-image
+docker run -it -p 8000:8000 --name papo papo-image
 - builda compose e roda o trem
 docker compose up --build
 - compose para fazer alterações

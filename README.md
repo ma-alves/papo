@@ -1,5 +1,5 @@
-# clairo
-Batizado em homenagem a cantora indie, clairo é um chat app desenvolvido com o intuito de explorar as possibilidades de WebSockets com entrega de mensagens em tempo real e monitoramento de status online, utilizando código assíncrono em seus consumidores através do Django Channels e Redis como Pub/Sub. O foco é o desenvolvimento do back-end, enquanto o front-end possui uma interface simples construída utilizando Tailwind.
+# papo
+papo é um chat app desenvolvido com o intuito de explorar as possibilidades de WebSockets com entrega de mensagens em tempo real e monitoramento de status online, utilizando código assíncrono em seus consumidores através do Django Channels e Redis como Pub/Sub. O foco é o desenvolvimento do back-end, enquanto o front-end possui uma interface simples construída utilizando Tailwind.
 
 ### Tech Stack
 - [Django](https://github.com/django) - Web Framework
@@ -13,9 +13,12 @@ Batizado em homenagem a cantora indie, clairo é um chat app desenvolvido com o 
 ### Configuração
 1. Clone o repositório:
 ```bash
-git clone https://github.com/ma-alves/clairo.git
+git clone https://github.com/ma-alves/papo.git
 ```
-2. Ajuste as variáveis de ambiente em `.env.example`
+2. Ajuste as variáveis de ambiente:
+```bash
+cp .env.example .env
+```
 3. Utilize o Docker Compose para iniciar os serviços:
 ```bash
 docker compose up --build
@@ -23,4 +26,4 @@ docker compose up --build
 4. A aplicação estará disponível em 0.0.0.0:8000
 
 ### Acesso
-A aplicação também está disponível em [clairo](https://clairo-web.onrender.com/), fique a vontade para me enviar uma mensagem! Meu usuário: [matheus](https://clairo-web.onrender.com/chat/profile/matheus/)
+A aplicação também está disponível em [papo](https://papo.onrender.com/), fique a vontade para me enviar uma mensagem! Meu usuário: [matheus](https://papo.onrender.com/chat/profile/matheus/)
