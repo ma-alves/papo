@@ -65,6 +65,16 @@ def get_or_create_chat(request, username):
 
 
 @login_required
+def delete_chat(request, chat_uuid):
+	if request.method =="POST":
+		chat = request.user.chats.get(chat_uuid=chat_uuid)
+		chat.delete()
+
+		return redirect('home')
+	return redirect('home')
+
+
+@login_required
 def search_users(request):
 	query = request.GET.get('username', '')
 	users = User.objects.all()

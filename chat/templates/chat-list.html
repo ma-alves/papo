@@ -7,7 +7,7 @@
         {% for user in chat.users.all %}
             {% if user != request.user %}
             <a href="{% url 'chat' chat.chat_uuid %}">
-                <div class="flex items-center font-medium gap-2 p-2 hover:bg-emerald-300 rounded-lg z-0 overflow-y-auto grow">
+                <div id="chat-{{ chat.chat_uuid }}" class="chat-item flex items-center font-medium gap-2 p-2 hover:bg-emerald-300 rounded-lg z-0 overflow-y-auto grow" onmouseover="showDeleteButton('{{ chat.chat_uuid }}')" onmouseout="hideDeleteButton('{{ chat.chat_uuid }}')">
                     <img class="w-10 h-10 rounded-full object-cover" src="{% static 'img/profile-pic.png' %}">
                     {{ user.username }}
                     {% if user.status.online_status %}
@@ -16,9 +16,44 @@
                     {% else %}
                     <span id="ws-{{ user.id }}" class="hidden" title="Offline"></span>
                     {% endif %}
+                    <form id="deleteForm-{{ chat.chat_uuid }}" method="POST" action="{% url 'delete-chat' chat.chat_uuid %}" class="hidden ml-auto">
+                        {% csrf_token %}
+                        <button type="submit" class="w-6 h-6 bg-gray-400 rounded-full hover:bg-red-500 hover:text-white text-center text-sm flex items-center justify-center">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </form>
                 </div>
             </a>
             {% endif %}
         {% endfor %}
     {% endfor %}
 </div>
+<script>
+    function showDeleteButton(chatId) {
+        const deleteForm = document.getElementById('deleteForm-' + chatId);
+        if (deleteForm) {
+            deleteForm.classList.remove('hidden');
+        }
+    }
+    
+    function hideDeleteButton(chatId) {
+        const deleteForm = document.getElementById('deleteForm-' + chatId);
+        if (deleteForm) {
+            deleteForm.classList.add('hidden');
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatItems = document.querySelectorAll('.chat-item');
+        chatItems.forEach(item => {
+            item.addEventListener('mouseover', function() {
+                const chatId = this.id.replace('chat-', '');
+                showDeleteButton(chatId);
+            });
+            item.addEventListener('mouseout', function() {
+                const chatId = this.id.replace('chat-', '');
+                hideDeleteButton(chatId);
+            });
+        });
+    });
+</script>

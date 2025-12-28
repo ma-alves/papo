@@ -1,6 +1,7 @@
 # ALTERAR WSS ANTES DE DAR MERGE EM MAIN PELO AMOR DE DEUS
 
 # tarefas
+- alterar hover do header
 - deletar conversa
 - deletar conta
 - escrever testes gerais
@@ -46,6 +47,8 @@ docker compose down -v
 docker compose run web python manage.py migrate
 
 # referencias
+https://leapcell.io/blog/building-real-time-applications-with-django-channels-beyond-simple-websockets
+
 https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Testing#locallibrary_tests
 https://www.geeksforgeeks.org/python/how-to-authenticate-a-user-in-tests-in-django/
 https://stackoverflow.com/questions/63066240/setup-postgres-in-github-actions-for-django
