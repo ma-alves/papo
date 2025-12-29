@@ -23,17 +23,17 @@
 						{% if request.user.is_authenticated %}
 						<p class="text-sm">Olá, {{ request.user.username }}!</p>
 						<a href="{% url 'profile' request.user.username %}"
-							class="block px-4 py-2 text-sm font-medium hover:bg-emerald-300 rounded-full">Perfil</a>
+							class="block px-4 py-2 text-sm font-medium hover:underline hover:decoration-2 hover:decoration-emerald-300">Perfil</a>
 						<a href="{% url 'home' %}"
-							class="block px-4 py-2 text-sm font-medium hover:bg-emerald-300 rounded-full">Conversas</a>
+							class="block px-4 py-2 text-sm font-medium hover:underline hover:decoration-2 hover:decoration-emerald-300">Conversas</a>
 						<form action="{% url 'logout' %}" method="post">
 							{% csrf_token %}
 							<button type="submit"
-								class="block px-4 py-2 text-sm font-medium hover:bg-red-600 hover:text-white hover:rounded-full text-red-600">Sair</button>
+								class="block px-4 py-2 text-sm font-medium hover:underline hover:decoration-2 hover:decoration-red-600 text-red-600">Sair</button>
 						</form>
 						{% else %}
 						<a href="{% url 'login' %}"
-							class="px-3 py-2 text-sm font-medium hover:bg-emerald-500 rounded-full">
+							class="px-3 py-2 text-sm font-medium hover:underline hover:decoration-2 hover:decoration-emerald-300">
 							Login
 						</a>
 						<a href="{% url 'signup' %}"
