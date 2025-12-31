@@ -9,5 +9,6 @@ urlpatterns = [
 	path('profile/<str:username>/', views.UserDetailView.as_view(), name='profile'),
 	path('start-chat/<str:username>/', views.get_or_create_chat, name='start-chat'),
     path('delete-chat/<uuid:chat_uuid>/', views.delete_chat, name='delete-chat'),
+    path('delete-user/', views.delete_user, name='delete-user'),
 	path('<uuid:chat_uuid>/', views.chat_view, name='chat'),
 ]
