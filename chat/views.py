@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -45,32 +46,33 @@ def chat_view(request, chat_uuid):
 
 @login_required
 def get_or_create_chat(request, username):
-	if request.user.username == username:
-		return redirect('home')
+	if request.method == "POST":
+		if request.user.username == username:
+			return redirect('home')
 
-	other_user = User.objects.get(username=username)
-	my_chatrooms = request.user.chats.all()
+		other_user = User.objects.get(username=username)
+		my_chatrooms = request.user.chats.all()
 
-	for chat in my_chatrooms:
-		if other_user in chat.users.all():
-			chatroom = chat
-			return redirect('chat', chatroom.chat_uuid)
-		else:
-			continue
+		for chat in my_chatrooms:
+			if other_user in chat.users.all():
+				chatroom = chat
+				return redirect('chat', chatroom.chat_uuid)
+			else:
+				continue
 
-	chatroom = Chat.objects.create()
-	chatroom.users.add(other_user, request.user)
+		chatroom = Chat.objects.create()
+		chatroom.users.add(other_user, request.user)
 
-	return redirect('chat', chatroom.chat_uuid)
+		return redirect('chat', chatroom.chat_uuid)
+	return render(request, 'chat/profile.html')
 
 
 @login_required
 def delete_chat(request, chat_uuid):
-	if request.method =="POST":
+	if request.method == "POST":
 		chat = request.user.chats.get(chat_uuid=chat_uuid)
 		chat.delete()
-
-		return redirect('home')
+	
 	return redirect('home')
 
 
@@ -85,6 +87,17 @@ def search_users(request):
 		return render(request, 'chat/search.html', context={'user_list': user_list})
 
 	return redirect('home')
+
+
+@login_required
+def delete_user(request):
+	if request.method == 'POST':
+		user = request.user
+		user.delete()
+		logout(request)
+		return redirect('signup')
+	
+	return render(request, 'chat/profile.html')
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):

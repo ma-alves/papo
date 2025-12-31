@@ -1,8 +1,6 @@
 # ALTERAR WSS ANTES DE DAR MERGE EM MAIN PELO AMOR DE DEUS
 
 # tarefas
-- adicionar POST em create chat
-- deletar conta
 - escrever testes gerais
 
 # observações e dúvidas
