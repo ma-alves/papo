@@ -1,7 +1,7 @@
 # papo
 papo é um chat app desenvolvido com o intuito de explorar as possibilidades de WebSockets com entrega de mensagens em tempo real e monitoramento de status online, utilizando código assíncrono em seus consumidores através do Django Channels e Redis como Pub/Sub. O foco é o desenvolvimento do back-end, enquanto o front-end possui uma interface simples construída utilizando Tailwind.
 
-### Tech Stack
+## Tech Stack
 - [Django](https://github.com/django) - Web Framework
 - [Channels](https://github.com/django/channels) - Extensão do Django para código assíncrono e WebSockets
 - [Daphne](https://github.com/django/daphne) - Servidor HTTPS/Websocket
@@ -10,7 +10,7 @@ papo é um chat app desenvolvido com o intuito de explorar as possibilidades de 
 - [Tailwind](https://tailwindcss.com/) - CSS Framework
 - [Docker Compose](https://docs.docker.com/compose/) - Multi-container
 
-### Configuração
+## Configuração
 1. Clone o repositório:
 ```bash
 git clone https://github.com/ma-alves/papo.git
@@ -25,5 +25,5 @@ docker compose up --build
 ```
 4. A aplicação estará disponível em 0.0.0.0:8000
 
-### Acesso
+## Acesso
 A aplicação também está disponível em [papo](https://papo-uexb.onrender.com), fique a vontade para me enviar uma mensagem! Meu usuário: [matheus](https://papo-uexb.onrender.com/chat/profile/matheus/)
